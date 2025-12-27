@@ -221,3 +221,20 @@ y_pred = model.predict(X_test)
 # Đánh giá
 print("MSE:", mean_squared_error(y_test, y_pred))
 print("R2:", r2_score(y_test, y_pred))
+## Dự đoán calories_day từ thói quen ăn uống và sở thích thực phẩm. dùng các biến: breakfast, eating_out, fav_cuisine, fav_food
+#### Chuyển đổi các biến định tính sang số
+df["fav_cuisine_encoded"] = le.fit_transform(df["fav_cuisine"].astype(str))
+df["fav_food_encoded"] = le.fit_transform(df["fav_food"].astype(str))
+#### Chọn biến đầu vào và biến mục tiêu
+X2 = df[["breakfast", "eating_out", "fav_cuisine_encoded", "fav_food_encoded"]].dropna()
+y2 = df["calories_day"].loc[X2.index]
+#### Chia dữ liệu train/test
+X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2, test_size=0.2, random_state=42)
+#### Mô hình hồi quy tuyến tính
+model2 = LinearRegression()
+model2.fit(X2_train, y2_train)
+#### Dự đoán
+y2_pred = model2.predict(X2_test)
+#### Đánh giá
+print("MSE:", mean_squared_error(y2_test, y2_pred))
+print("R2:", r2_score(y2_test, y2_pred))
