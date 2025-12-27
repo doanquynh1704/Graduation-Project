@@ -146,7 +146,7 @@ numeric_cols = [
     "weight"
 ]
 #### Tính toán thống kê mô tả
-#####Tính các chỉ tiêu: giá trị trung bình, độ lệch chuẩn, nhỏ nhất và lớn nhất
+##### Tính các chỉ tiêu: giá trị trung bình, độ lệch chuẩn, nhỏ nhất và lớn nhất
 summary = df[numeric_cols].describe().loc[["mean", "std", "min", "max"]]
 ##### Xuất bảng thống kê ra file CSV
 summary.to_csv("statistics_summary.csv")
