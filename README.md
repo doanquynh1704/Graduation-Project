@@ -87,19 +87,15 @@ kKhảo sát về thói quen ăn uống, sở thích thực phẩm, nhận thứ
 
 # 5. Sử dụng python để xử lý dữ liệu
 ## Cài đặt và import thư viện
-```python
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
 ## Khai báo đường dẫn googlesheet
 url = "https://docs.google.com/spreadsheets/d/1N21Vl_Twr9JLNMb-X0J9A-tj-QYJl7p5kp8SyldPs-A/export?format=csv&gid=1890386386"
 ## Đọc dữ liệu từ Google Sheets vào DataFrame
 df = pd.read_csv(url)
-
 ## Hiển thị 5 dòng dữ liệu đầu tiên
 df.head()
-
 ## Làm sạch dữ liệu GPA
 #### Loại bỏ các dòng có giá trị GPA bị thiếu
 df = df.dropna(subset=["GPA"])
@@ -126,7 +122,6 @@ fill_values = {
     "weight": "I'm not answering this.",
     "calories_scone": 315
 }
-
 df = df.fillna(value=fill_values)
 #### Loại bỏ dữ liệu thiếu ở nghề nghiệp của cha
 df = df.dropna(subset=["father_profession"])
