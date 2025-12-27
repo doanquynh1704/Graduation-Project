@@ -199,3 +199,25 @@ plt.title("GPA trung bình theo thói quen ăn sáng")
 plt.xlabel("Ăn sáng (1 = Có, 2 = Không)")
 plt.ylabel("GPA trung bình")
 plt.show()
+## Dự đoán self_perception_weight hoặc healthy_feeling Sử dụng các biến đầu vào: diet_current, exercise, calories_day
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+#### Chuyển đổi cột diet_current sang số (Label Encoding)
+le = LabelEncoder()
+df["diet_current_encoded"] = le.fit_transform(df["diet_current"].astype(str))
+#### Chọn biến đầu vào và biến mục tiêu
+X = df[["diet_current_encoded", "exercise", "calories_day"]].dropna()
+y = df["healthy_feeling"].loc[X.index]   # hoặc thay bằng self_perception_weight
+#### Chia dữ liệu train/test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+#### Mô hình hồi quy tuyến tính
+model = LinearRegression()
+model.fit(X_train, y_train)
+# Dự đoán
+y_pred = model.predict(X_test)
+# Đánh giá
+print("MSE:", mean_squared_error(y_test, y_pred))
+print("R2:", r2_score(y_test, y_pred))
