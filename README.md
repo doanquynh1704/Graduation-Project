@@ -152,3 +152,50 @@ summary = df[numeric_cols].describe().loc[["mean", "std", "min", "max"]]
 summary.to_csv("statistics_summary.csv")
 ##### Hiển thị kết quả thống kê để kiểm tra
 print(summary)
+## Import thư viện trực quan hóa dữ liệu
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+## Phân phối điểm GPA (Histogram)
+plt.figure(figsize=(6, 3))
+sns.histplot(df["GPA"], bins=20, kde=True, color="skyblue")
+plt.title("Phân phối GPA")
+plt.xlabel("GPA")
+plt.ylabel("Tần suất")
+plt.show()
+## Phát hiện ngoại lai trong lượng calo tiêu thụ mỗi ngày (Boxplot)
+plt.figure(figsize=(5, 4))
+sns.boxplot(x=df["calories_day"], color="lightgreen")
+plt.title("Boxplot calories_day (phát hiện outlier)")
+plt.xlabel("Calories per day")
+plt.show()
+## Phân tích tương quan giữa các biến chính (Heatmap)
+corr_cols = ["GPA", "exercise", "calories_day", "healthy_feeling"]
+corr_matrix = df[corr_cols].corr()
+
+plt.figure(figsize=(5, 4))
+sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", fmt=".2f")
+plt.title("Heatmap tương quan")
+plt.show()
+## So sánh GPA trung bình theo giới tính
+plt.figure(figsize=(5, 4))
+sns.barplot(
+    x="Gender", y="GPA", data=df,
+    estimator="mean", errorbar=None,
+    hue="Gender", legend=False, palette="Set2"
+)
+plt.title("GPA trung bình theo giới tính")
+plt.xlabel("Giới tính (1 = Nam, 2 = Nữ)")
+plt.ylabel("GPA trung bình")
+plt.show()
+## So sánh GPA trung bình theo thói quen ăn sáng
+plt.figure(figsize=(5, 4))
+sns.barplot(
+    x="breakfast", y="GPA", data=df,
+    estimator="mean", errorbar=None,
+    hue="breakfast", legend=False, palette="Set3"
+)
+plt.title("GPA trung bình theo thói quen ăn sáng")
+plt.xlabel("Ăn sáng (1 = Có, 2 = Không)")
+plt.ylabel("GPA trung bình")
+plt.show()
