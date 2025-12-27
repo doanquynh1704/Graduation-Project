@@ -97,3 +97,39 @@ url = "https://docs.google.com/spreadsheets/d/1N21Vl_Twr9JLNMb-X0J9A-tj-QYJl7p5k
 df = pd.read_csv(url)
 ## Hiển thị 5 dòng dữ liệu đầu tiên
 df.head()
+## Làm sạch dữ liệu GPA
+#### Loại bỏ các dòng có giá trị GPA bị thiếu
+df = df.dropna(subset=["GPA"])
+#### Điền giá trị mặc định cho các cột còn thiếu
+fill_values = {
+    "calories_day": 2,
+    "comfort_food_reasons": "bỏ",   # Có thể để NaN nếu muốn xử lý sau
+    "comfort_food_reasons_coded": 8,
+    "cook": 5,
+    "cuisine": 4,
+    "drink": 1,
+    "employment": 1,
+    "exercise": 3,
+    "father_education": 1,
+    "fav_food": 2,
+    "marital_status": 1,
+    "mother_education": 1,
+    "on_off_campus": 4,
+    "persian_food": 4,
+    "self_perception_weight": 6,
+    "soup": 2,
+    "sports": 2,
+    "tortilla_calories": 580,
+    "weight": "I'm not answering this.",
+    "calories_scone": 315
+}
+
+df = df.fillna(value=fill_values)
+#### Loại bỏ dữ liệu thiếu ở nghề nghiệp của cha
+df = df.dropna(subset=["father_profession"])
+#### Kiểm tra và loại bỏ các dòng trùng lặp
+df.info()
+df.head()
+#### Kiểm tra thông tin và hiển thị dữ liệu sau xử lý
+df.info()
+df.head()
