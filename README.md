@@ -131,3 +131,24 @@ df.head()
 #### Kiểm tra thông tin và hiển thị dữ liệu sau xử lý
 df.info()
 df.head()
+## Chuyển đổi cột cân nặng sang kiểu số
+#### Chuyển cột weight sang dạng số, ép các giá trị không hợp lệ thành NaN
+df["weight"] = pd.to_numeric(df["weight"], errors="coerce")
+#### Xác định các biến định lượng dùng cho phân tích
+numeric_cols = [
+    "GPA",
+    "calories_day", "calories_chicken", "calories_scone",
+    "tortilla_calories", "turkey_calories", "waffle_calories",
+    "fruit_day", "veggies_day",
+    "exercise",
+    "healthy_feeling", "healthy_meal",
+    "income",
+    "weight"
+]
+#### Tính toán thống kê mô tả
+#####Tính các chỉ tiêu: giá trị trung bình, độ lệch chuẩn, nhỏ nhất và lớn nhất
+summary = df[numeric_cols].describe().loc[["mean", "std", "min", "max"]]
+##### Xuất bảng thống kê ra file CSV
+summary.to_csv("statistics_summary.csv")
+##### Hiển thị kết quả thống kê để kiểm tra
+print(summary)
