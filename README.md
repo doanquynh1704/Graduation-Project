@@ -76,3 +76,11 @@ kKhảo sát về thói quen ăn uống, sở thích thực phẩm, nhận thứ
   - `calories_scone`: điền số **315**
 
 - **Kiểm tra dữ liệu trùng lặp và loại bỏ**
+# 4. Sử dụng Power BI vẽ các biểu đồ để thể hiện thông tin tổng quan (Overview)
+
+- **Card visual**: Hiển thị số lượng sinh viên tham gia khảo sát (**126**)
+- **Pie chart**: Phân bố giới tính (`Gender`)
+- **Donut chart**: Tỷ lệ sinh viên ăn sáng (`breakfast`)
+- **Clustered bar chart**: Fav cuisine (`fav_cuisine`) theo giới tính
+- **Clustered bar chart**: So sánh số lần ăn ngoài (`eating_out`) theo thu nhập (`income`)
+- **Scatter chart**: Thói quen tập thể dục theo `GPA`
