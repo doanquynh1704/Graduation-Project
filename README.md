@@ -50,4 +50,29 @@ kKhảo sát về thói quen ăn uống, sở thích thực phẩm, nhận thứ
 - `comfort_food_reasons`
 - `life_rewarding`
 - `eating_changes`
+# 3. Xử lý dữ liệu ban đầu
+- **Kiểm tra các giá trị thiếu (NaN) và xử lý chúng:**
+  - Cột `GPA` NaN: **loại bỏ**
+  - `calories_day`: điền số **2**
+  - `comfort_food_reasons`: **bỏ**
+  - `comfort_food_reasons_coded`: điền số **8** và **4** vào các ô trống
+  - `cook`: điền số **5**
+  - `cuisine`: điền **4, 5, 6** lần lượt vào ô trống
+  - `drink`: điền số **1**
+  - `employment`: điền số **1**
+  - `exercise`: điền số **3**
+  - `father_education`: điền số **1**
+  - `father_profession` NaN: **loại bỏ**
+  - `fav_food`: điền số **2**
+  - `marital_status`: điền số **1**
+  - `mother_education`: điền số **1**
+  - `on_off_campus`: điền số **4**
+  - `persian_food`: điền số **4**
+  - `self_perception_weight`: điền số **6**
+  - `soup`: điền số **2**
+  - `sports`: điền số **2**
+  - `tortilla_calories`: điền số **580**
+  - `weight`: điền `"I'm not answering this."`
+  - `calories_scone`: điền số **315**
 
+- **Kiểm tra dữ liệu trùng lặp và loại bỏ**
