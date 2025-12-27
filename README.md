@@ -92,8 +92,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 ## Khai báo đường dẫn googlesheet
-``url = "https://docs.google.com/spreadsheets/d/1N21Vl_Twr9JLNMb-X0J9A-tj-QYJl7p5kp8SyldPs-A/export?format=csv&gid=1890386386"``
+url = "https://docs.google.com/spreadsheets/d/1N21Vl_Twr9JLNMb-X0J9A-tj-QYJl7p5kp8SyldPs-A/export?format=csv&gid=1890386386"
 ## Đọc dữ liệu từ Google Sheets vào DataFrame
-`` df = pd.read_csv(url)``
+df = pd.read_csv(url)
 ## Hiển thị 5 dòng dữ liệu đầu tiên
-`` df.head()``
+df.head()
