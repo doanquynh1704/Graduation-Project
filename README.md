@@ -84,3 +84,16 @@ kKhảo sát về thói quen ăn uống, sở thích thực phẩm, nhận thứ
 - **Clustered bar chart**: Fav cuisine (`fav_cuisine`) theo giới tính
 - **Clustered bar chart**: So sánh số lần ăn ngoài (`eating_out`) theo thu nhập (`income`)
 - **Scatter chart**: Thói quen tập thể dục theo `GPA`
+
+# 5. Sử dụng python để xử lý dữ liệu
+## Cài đặt và import thư viện
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+## Khai báo đường dẫn googlesheet
+``url = "https://docs.google.com/spreadsheets/d/1N21Vl_Twr9JLNMb-X0J9A-tj-QYJl7p5kp8SyldPs-A/export?format=csv&gid=1890386386"``
+## Đọc dữ liệu từ Google Sheets vào DataFrame
+`` df = pd.read_csv(url)``
+## Hiển thị 5 dòng dữ liệu đầu tiên
+`` df.head()``
