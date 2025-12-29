@@ -215,9 +215,9 @@ y = df["healthy_feeling"].loc[X.index]   # hoặc thay bằng self_perception_we
 #### Mô hình hồi quy tuyến tính
 ``model = LinearRegression()
 model.fit(X_train, y_train)``
-# Dự đoán
+#### Dự đoán
 ``y_pred = model.predict(X_test)``
-# Đánh giá
+#### Đánh giá
 ``print("MSE:", mean_squared_error(y_test, y_pred))
 print("R2:", r2_score(y_test, y_pred))``
 ## Dự đoán calories_day từ thói quen ăn uống và sở thích thực phẩm. dùng các biến: breakfast, eating_out, fav_cuisine, fav_food
