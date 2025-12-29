@@ -87,9 +87,9 @@ kKhảo sát về thói quen ăn uống, sở thích thực phẩm, nhận thứ
 
 # 5. Sử dụng python để xử lý dữ liệu
 ## Cài đặt và import thư viện
-import matplotlib.pyplot as plt
+``import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
+import pandas as pd``
 ## Khai báo đường dẫn googlesheet
 ``url = "https://docs.google.com/spreadsheets/d/1N21Vl_Twr9JLNMb-X0J9A-tj-QYJl7p5kp8SyldPs-A/export?format=csv&gid=1890386386"``
 ## Đọc dữ liệu từ Google Sheets vào DataFrame
@@ -172,7 +172,6 @@ plt.show()``
 ## Phân tích tương quan giữa các biến chính (Heatmap)
 ``corr_cols = ["GPA", "exercise", "calories_day", "healthy_feeling"]
 corr_matrix = df[corr_cols].corr()
-
 plt.figure(figsize=(5, 4))
 sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", fmt=".2f")
 plt.title("Heatmap tương quan")
