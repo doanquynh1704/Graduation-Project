@@ -91,16 +91,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 ## Khai báo đường dẫn googlesheet
-url = "https://docs.google.com/spreadsheets/d/1N21Vl_Twr9JLNMb-X0J9A-tj-QYJl7p5kp8SyldPs-A/export?format=csv&gid=1890386386"
+``url = "https://docs.google.com/spreadsheets/d/1N21Vl_Twr9JLNMb-X0J9A-tj-QYJl7p5kp8SyldPs-A/export?format=csv&gid=1890386386"``
 ## Đọc dữ liệu từ Google Sheets vào DataFrame
-df = pd.read_csv(url)
+``df = pd.read_csv(url)``
 ## Hiển thị 5 dòng dữ liệu đầu tiên
-df.head()
+``df.head()``
 ## Làm sạch dữ liệu GPA
 #### Loại bỏ các dòng có giá trị GPA bị thiếu
-df = df.dropna(subset=["GPA"])
+``df = df.dropna(subset=["GPA"])``
 #### Điền giá trị mặc định cho các cột còn thiếu
-fill_values = {
+``fill_values = {
     "calories_day": 2,
     "comfort_food_reasons": "bỏ",   # Có thể để NaN nếu muốn xử lý sau
     "comfort_food_reasons_coded": 8,
@@ -122,7 +122,7 @@ fill_values = {
     "weight": "I'm not answering this.",
     "calories_scone": 315
 }
-df = df.fillna(value=fill_values)
+df = df.fillna(value=fill_values)``
 #### Loại bỏ dữ liệu thiếu ở nghề nghiệp của cha
 ``df = df.dropna(subset=["father_profession"])``
 #### Kiểm tra và loại bỏ các dòng trùng lặp
@@ -187,9 +187,9 @@ sns.barplot(
 plt.title("GPA trung bình theo giới tính")
 plt.xlabel("Giới tính (1 = Nam, 2 = Nữ)")
 plt.ylabel("GPA trung bình")
-plt.show()
+plt.show()``
 ## So sánh GPA trung bình theo thói quen ăn sáng
-plt.figure(figsize=(5, 4))
+``plt.figure(figsize=(5, 4))
 sns.barplot(
     x="breakfast", y="GPA", data=df,
     estimator="mean", errorbar=None,
@@ -231,8 +231,8 @@ y2 = df["calories_day"].loc[X2.index]``
 #### Chia dữ liệu train/test
 ``X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2, test_size=0.2, random_state=42)``
 #### Mô hình hồi quy tuyến tính
-``model2 = LinearRegression()``
-``model2.fit(X2_train, y2_train)``
+``model2 = LinearRegression()
+model2.fit(X2_train, y2_train)``
 #### Dự đoán
 ``y2_pred = model2.predict(X2_test)``
 #### Đánh giá
