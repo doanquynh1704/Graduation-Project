@@ -157,12 +157,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 ## Phân phối điểm GPA (Histogram)
-plt.figure(figsize=(6, 3))
+``plt.figure(figsize=(6, 3))
 sns.histplot(df["GPA"], bins=20, kde=True, color="skyblue")
 plt.title("Phân phối GPA")
 plt.xlabel("GPA")
 plt.ylabel("Tần suất")
-plt.show()
+plt.show()``
 ## Phát hiện ngoại lai trong lượng calo tiêu thụ mỗi ngày (Boxplot)
 plt.figure(figsize=(5, 4))
 sns.boxplot(x=df["calories_day"], color="lightgreen")
