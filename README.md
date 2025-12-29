@@ -124,18 +124,18 @@ fill_values = {
 }
 df = df.fillna(value=fill_values)
 #### Loại bỏ dữ liệu thiếu ở nghề nghiệp của cha
-df = df.dropna(subset=["father_profession"])
+``df = df.dropna(subset=["father_profession"])``
 #### Kiểm tra và loại bỏ các dòng trùng lặp
-df.info()
-df.head()
+``df.info()
+df.head()``
 #### Kiểm tra thông tin và hiển thị dữ liệu sau xử lý
-df.info()
-df.head()
+``df.info()
+df.head()``
 ## Chuyển đổi cột cân nặng sang kiểu số
 #### Chuyển cột weight sang dạng số, ép các giá trị không hợp lệ thành NaN
-df["weight"] = pd.to_numeric(df["weight"], errors="coerce")
+``df["weight"] = pd.to_numeric(df["weight"], errors="coerce")``
 #### Xác định các biến định lượng dùng cho phân tích
-numeric_cols = [
+``numeric_cols = [
     "GPA",
     "calories_day", "calories_chicken", "calories_scone",
     "tortilla_calories", "turkey_calories", "waffle_calories",
@@ -144,18 +144,18 @@ numeric_cols = [
     "healthy_feeling", "healthy_meal",
     "income",
     "weight"
-]
+]``
 #### Tính toán thống kê mô tả
 ##### Tính các chỉ tiêu: giá trị trung bình, độ lệch chuẩn, nhỏ nhất và lớn nhất
-summary = df[numeric_cols].describe().loc[["mean", "std", "min", "max"]]
+``summary = df[numeric_cols].describe().loc[["mean", "std", "min", "max"]]``
 ##### Xuất bảng thống kê ra file CSV
-summary.to_csv("statistics_summary.csv")
+``summary.to_csv("statistics_summary.csv")``
 ##### Hiển thị kết quả thống kê để kiểm tra
-print(summary)
+``print(summary)``
 ## Import thư viện trực quan hóa dữ liệu
-import pandas as pd
+``import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
+import seaborn as sns``
 ## Phân phối điểm GPA (Histogram)
 ``plt.figure(figsize=(6, 3))
 sns.histplot(df["GPA"], bins=20, kde=True, color="skyblue")
@@ -164,21 +164,21 @@ plt.xlabel("GPA")
 plt.ylabel("Tần suất")
 plt.show()``
 ## Phát hiện ngoại lai trong lượng calo tiêu thụ mỗi ngày (Boxplot)
-plt.figure(figsize=(5, 4))
+``plt.figure(figsize=(5, 4))
 sns.boxplot(x=df["calories_day"], color="lightgreen")
 plt.title("Boxplot calories_day (phát hiện outlier)")
 plt.xlabel("Calories per day")
-plt.show()
+plt.show()``
 ## Phân tích tương quan giữa các biến chính (Heatmap)
-corr_cols = ["GPA", "exercise", "calories_day", "healthy_feeling"]
+``corr_cols = ["GPA", "exercise", "calories_day", "healthy_feeling"]
 corr_matrix = df[corr_cols].corr()
 
 plt.figure(figsize=(5, 4))
 sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", fmt=".2f")
 plt.title("Heatmap tương quan")
-plt.show()
+plt.show()``
 ## So sánh GPA trung bình theo giới tính
-plt.figure(figsize=(5, 4))
+``plt.figure(figsize=(5, 4))
 sns.barplot(
     x="Gender", y="GPA", data=df,
     estimator="mean", errorbar=None,
@@ -198,43 +198,43 @@ sns.barplot(
 plt.title("GPA trung bình theo thói quen ăn sáng")
 plt.xlabel("Ăn sáng (1 = Có, 2 = Không)")
 plt.ylabel("GPA trung bình")
-plt.show()
+plt.show()``
 ## Dự đoán self_perception_weight hoặc healthy_feeling Sử dụng các biến đầu vào: diet_current, exercise, calories_day
-import pandas as pd
+``import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score``
 #### Chuyển đổi cột diet_current sang số (Label Encoding)
-le = LabelEncoder()
-df["diet_current_encoded"] = le.fit_transform(df["diet_current"].astype(str))
+``le = LabelEncoder()
+df["diet_current_encoded"] = le.fit_transform(df["diet_current"].astype(str))``
 #### Chọn biến đầu vào và biến mục tiêu
-X = df[["diet_current_encoded", "exercise", "calories_day"]].dropna()
-y = df["healthy_feeling"].loc[X.index]   # hoặc thay bằng self_perception_weight
+``X = df[["diet_current_encoded", "exercise", "calories_day"]].dropna()
+y = df["healthy_feeling"].loc[X.index]   # hoặc thay bằng self_perception_weight``
 #### Chia dữ liệu train/test
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+``X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)``
 #### Mô hình hồi quy tuyến tính
-model = LinearRegression()
-model.fit(X_train, y_train)
+``model = LinearRegression()
+model.fit(X_train, y_train)``
 # Dự đoán
-y_pred = model.predict(X_test)
+``y_pred = model.predict(X_test)``
 # Đánh giá
-print("MSE:", mean_squared_error(y_test, y_pred))
-print("R2:", r2_score(y_test, y_pred))
+``print("MSE:", mean_squared_error(y_test, y_pred))
+print("R2:", r2_score(y_test, y_pred))``
 ## Dự đoán calories_day từ thói quen ăn uống và sở thích thực phẩm. dùng các biến: breakfast, eating_out, fav_cuisine, fav_food
 #### Chuyển đổi các biến định tính sang số
-df["fav_cuisine_encoded"] = le.fit_transform(df["fav_cuisine"].astype(str))
-df["fav_food_encoded"] = le.fit_transform(df["fav_food"].astype(str))
+``df["fav_cuisine_encoded"] = le.fit_transform(df["fav_cuisine"].astype(str))
+df["fav_food_encoded"] = le.fit_transform(df["fav_food"].astype(str))``
 #### Chọn biến đầu vào và biến mục tiêu
-X2 = df[["breakfast", "eating_out", "fav_cuisine_encoded", "fav_food_encoded"]].dropna()
-y2 = df["calories_day"].loc[X2.index]
+``X2 = df[["breakfast", "eating_out", "fav_cuisine_encoded", "fav_food_encoded"]].dropna()
+y2 = df["calories_day"].loc[X2.index]``
 #### Chia dữ liệu train/test
-X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2, test_size=0.2, random_state=42)
+``X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2, test_size=0.2, random_state=42)``
 #### Mô hình hồi quy tuyến tính
-model2 = LinearRegression()
-model2.fit(X2_train, y2_train)
+``model2 = LinearRegression()``
+``model2.fit(X2_train, y2_train)``
 #### Dự đoán
-y2_pred = model2.predict(X2_test)
+``y2_pred = model2.predict(X2_test)``
 #### Đánh giá
-print("MSE:", mean_squared_error(y2_test, y2_pred))
-print("R2:", r2_score(y2_test, y2_pred))
+``print("MSE:", mean_squared_error(y2_test, y2_pred))
+print("R2:", r2_score(y2_test, y2_pred))``
